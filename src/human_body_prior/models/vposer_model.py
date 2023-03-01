@@ -57,13 +57,13 @@ class NormalDistDecoder(nn.Module):
 
 
 class VPoser(nn.Module):
-    def __init__(self, model_ps):
+    def __init__(self, model_ps, angle_dim=3):
         super(VPoser, self).__init__()
 
         num_neurons, self.latentD = model_ps.model_params.num_neurons, model_ps.model_params.latentD
 
         self.num_joints = 21
-        n_features = self.num_joints * 3
+        n_features = self.num_joints * angle_dim
 
         self.encoder_net = nn.Sequential(
             BatchFlatten(),
